@@ -26,7 +26,7 @@ Default build is for `minSdkVersion` 21 and `targetSdkVersion` 27, but you can [
 
 Optional: You can add the tag used by Log to the `logCatArguments` properties in .vscode/launch.json
 
-This will include the output of the logging methods in the "OUTPUT" panel:
+This example will include React Native warnings and errors, and all the messages from App in the "OUTPUT" panel:
 ```json
     ...
     {
@@ -41,7 +41,7 @@ This will include the output of the logging methods in the "OUTPUT" panel:
         "*:S",
         "ReactNative:W",
         "ReactNativeJS:W",
-        "App:D"
+        "App:V"
       ]
     },
 ```
@@ -67,18 +67,21 @@ Log messages in your JavaScript files:
 ```js
 import Log from 'react-native-android-log'
 
-// Set the default level (optional)
+// Set the default priority level (optional)
 Log.setLevel(__DEV__ ? Log.VERBOSE : Log.WARN)
 
 ...
 Log.v('Verbose message')    // no output in release builds
 Log.w('Debugging')
+
+// debugging message with amother tag:
+Log.d('Proc2', 'warning')
 ```
 
 ...and see the output in the console through `adb`:
 
 ```bash
-$ adb logcat -s App:V
+$ adb logcat -s App:V Proc2:V
 ```
 
 ## API
@@ -94,8 +97,7 @@ Constant | Description
 `INFO` | Priority constant for `Log.i`
 `WARN` | Priority constant for `Log.w`
 `ERROR` | Priority constant for `Log.e`
-`SUPPRESS` |  This is a special constant used to disable logging.
-`isDebug` | This is a boolean constant that contains `true` for debug builds.
+`SUPPRESS` |  This is a special constant used to disable logging
 
 ### Methods
 
@@ -128,11 +130,13 @@ Constant | Description
 - `w (WARN)`
 - `e (ERROR)`
 
-    The above are the one-letter logging methods, one for each predefined level, except `SUPPRESS`.
+    The above methods are one-letter shortcuts to the `print` method with the corresponding priority level and can be invoked with or without the `tag` parameter:
 
-    All this methods has the syntax `method(tag: string, message: string)` or  `method(message: string)`.
+    `method(tag: string, msg: string)`
 
-    If you omit the tag, the tag specified with `setTag` will be used.
+    `method(msg: string)`.
+
+    If you omit the `tag`, the one specified with `setTag` will be used, or the predefined "App".
 
 ### License
 
