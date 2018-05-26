@@ -84,6 +84,8 @@ Log.d('Proc2', 'warning')
 $ adb logcat -s App:V Proc2:V
 ```
 
+or in the OUPUT panel of VS Code, if you are using the React Native Tools extension.
+
 ## API
 
 ### Contstants
@@ -134,9 +136,9 @@ Constant | Description
 
     `method(tag: string, msg: string)`
 
-    `method(msg: string)`.
+    `method(msg: string)`
 
-    If you omit the `tag`, the one specified with `setTag` will be used, or the predefined "App".
+    If you omit the `tag`, the one specified with `setTag` will be used, or the predefined tag "App".
 
 ### License
 
