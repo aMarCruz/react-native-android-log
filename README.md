@@ -5,9 +5,13 @@
 
 Easy and useful log methods for Android apps in debug or release mode, with minimal impact.
 
-Requires Gradle plugin 3.1 and Gradle 4.4 or later.
+Works with RN 0.50+, Gradle plugin 3.1.x and Gradle 4.4 or later.
 
 Default build is for `minSdkVersion` 21 and `targetSdkVersion` 27, but you can [configure](#sdk-version-settings) this.
+
+**NOTE:**
+
+In iOS, the default level is `SUPPRESS`, which disables the output. If you change it, `console.log` will be used.
 
 ## Install
 

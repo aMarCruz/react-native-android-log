@@ -1,6 +1,6 @@
 {
   "name": "react-native-android-log",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Easy and useful log methods for Android apps in debug or release mode, with minimal impact",
   "main": "index.js",
   "scripts": {

@@ -1,4 +1,6 @@
-const { RNLog } = require('react-native').NativeModules
+const RN = require('react-native')
+const isAndroid = RN.Platform.OS === 'android'
+const RNLog = isAndroid ? RN.NativeModules.RNLog : require('./rnlog')
 
 export default {
 
@@ -90,6 +92,6 @@ export default {
   },
 
   _tag: 'App',
-  _level: __DEV__ ? this.DEBUG : this.ERROR,
+  _level: isAndroid ? (__DEV__ ? this.DEBUG : this.ERROR) : this.SUPPRESS,
   _levels: {},
 }
